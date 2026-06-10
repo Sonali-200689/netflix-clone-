@@ -1,0 +1,336 @@
+/* ==========================================================================
+   GLOBAL STRUCTURE
+   ========================================================================== */
+:root {
+    --netflix-red: #e50914;
+    --bg-black: #000000;
+    --card-blue: linear-gradient(145deg, #0f1424, #182038);
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-white);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ==========================================================================
+   HERO / SIGNUP GATE (Image 1 Structure)
+   ========================================================================== */
+.hero-gate {
+    position: relative;
+    width: 100%;
+    height: 95vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+
+    background-image: url(assets/IN-en-20260511-TRIFECTA-perspective_ec39852e-0b48-4e8a-b415-dd8376cd83ce_large.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* Tilted Grid Container Technique */
+.tile-wrapper {
+    position: absolute;
+    top: -30%;
+    left: -10%;
+    width: 120%;
+    height: 140%;
+    z-index: 1;
+    transform: rotate(-10deg) scale(1.1);
+    opacity: 0.35; /* Darkens backgrounds slightly to preserve clear typography contrast */
+}
+
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    width: 100%;
+    height: 100%;
+}
+
+.tile-card {
+    width: 100%;
+    height: 100%;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.tile-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Deep Vignette Grading Match */
+.vignette-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.85) 80%),
+                linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, transparent 40%, var(--bg-black) 100%);
+    z-index: 2;
+}
+
+/* Nav elements over landing backdrop */
+.nav-bar {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4%;
+}
+
+.logo {
+    color: var(--netflix-red);
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -1px;
+}
+
+.nav-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.lang-switcher {
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+    padding: 0.25rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.btn-signin {
+    background-color: var(--netflix-red);
+    color: white;
+    border: none;
+    padding: 0.35rem 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Typography & Forms setup for Gate content */
+.gate-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    margin: auto 0;
+    padding: 0 1.5rem;
+}
+
+.gate-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle-1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+.subtitle-2 {
+    font-size: 1.2rem;
+    color: #f3f3f3;
+    margin-bottom: 1.5rem;
+}
+
+/* Email Form Layout matches visual exactly */
+.email-form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.email-form input {
+    flex: 1;
+    padding: 1.2rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    color: white;
+    font-size: 1rem;
+}
+
+.email-form button {
+    background-color: var(--netflix-red);
+    color: white;
+    border: none;
+    padding: 0 2rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.email-form button:hover { background-color: #c11119; }
+
+/* The neon pink/red layout arc line at base of hero banner */
+.curve-accent {
+    position: absolute;
+    bottom: -45px;
+    left: -10%;
+    width: 120%;
+    height: 60px;
+    background: transparent;
+    border-top: 4px solid #e50914;
+    border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+    z-index: 5;
+    box-shadow: 0 -10px 25px rgba(229, 9, 20, 0.4);
+}
+
+/* ==========================================================================
+   MAIN SCROLL CONTENT (Image 2 Structure)
+   ========================================================================== */
+.content-wrapper {
+    max-width: 100%;
+    margin-top: 4rem;
+    padding: 0 ;
+}
+
+.trending-section, .reasons-section {
+    margin-bottom: 4rem;
+}
+
+h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+/* Numbered Card Layout Engine */
+.rank-track {
+    display: flex;
+    gap: 2.5rem; /* Large gap gives space for number overlaps */
+    overflow-x: auto;
+    padding: 1rem 4% 2rem 4%;
+    scrollbar-width: none;
+}
+.rank-track::-webkit-scrollbar { display: none; }
+
+.rank-card {
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    flex: 0 0 auto;
+    margin-left: 1.5rem;
+}
+.rank-card:first-child {
+    margin-left: 0;
+}
+/* Giant Number Strokes styling matches photo flawlessly */
+.rank-number {
+    font-size: 11rem;
+    font-weight: 900;
+    line-height: 0.7;
+    color: #000000;
+    -webkit-text-stroke: 4px #808080; /* Clean grey outline stroke border */
+    position: absolute;
+    left: -2.2rem;
+    bottom: -0.8rem;
+    z-index: 10;
+    letter-spacing: -10px;
+    user-select: none;
+}
+
+.rank-image {
+    width: 160px;
+    aspect-ratio: 2 / 3;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.rank-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* ==========================================================================
+   "MORE REASONS TO JOIN" GRID CARDS
+   ========================================================================== */
+.reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
+}
+
+.reason-box {
+    background: var(--card-blue);
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.reason-box h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.reason-box p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   RESPONSIVE OVERRIDES
+   ========================================================================== */
+@media (max-width: 768px) {
+    .email-form {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .email-form input, .email-form button {
+        width: 100%;
+        padding: 1rem;
+    }
+    .email-form button {
+        justify-content: center;
+        font-size: 1.1rem;
+    }
+    .tile-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
